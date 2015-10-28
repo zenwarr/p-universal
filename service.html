@@ -1,0 +1,586 @@
+<!doctype html>
+<html>
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1000">
+
+  <title>Page template</title>
+
+  <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/jquery.fancybox.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!--[if lt IE 9]>
+    <link rel="stylesheet" href="css/ie8.css">
+  <![endif]-->
+</head>
+<body>
+
+  <!-- BEGIN [HEADER] -->
+  <div class="header-wrapper">
+    <header class="site-header">
+      <h1 class="site-logo">
+        <a href="#" class="site-logo-link">
+          Бюро переводов Универсал
+        </a>
+      </h1>
+
+      <div class="header-right">
+        <div class="header-buttons">
+          <button class="btn btn-callback">Обратный звонок</button>
+          <button class="btn btn-pricecalc">Рассчитать стоимость</button>
+        </div>
+
+        <div class="header-contacts">
+          <div class="header-worktime">График работы: с 9:00 до 18:00</div>
+          <div class="header-phone-line">Москва: <span class="header-phone">+7 (123) 456 78 90</span></div>
+          <div class="header-phone-line">Калининград: <span class="header-phone">+7 (123) 456 78 90</span></div>
+        </div>
+      </div>
+
+      <div class="header-center">
+        <a href="mailto:zakaz@univer-co.ru" class="header-email">zakaz@univer-co.ru</a>
+
+        <div class="header-tagline">Мы знаем,<br> как сделать качество!</div>
+      </div>
+
+      <nav class="site-nav">
+        <ul class="site-nav-menu sl">
+          <li><a href="#">О компании</a></li>
+          <li><a href="#">Корпоративным клиентам</a></li>
+          <li><a href="#">Частным клиентам</a></li>
+          <li><a href="#">Акции и скидки</a></li>
+          <li><a href="#">Цены</a></li>
+          <li><a href="#">Как оплатить</a></li>
+          <li><a href="#">Контакты</a></li>
+        </ul>
+        <div class="site-nav-shadow"></div>
+      </nav>
+    </header>
+  </div>
+  <!-- END [HEADER] -->
+
+  <div class="site-content">
+    <div class="l-col">
+
+      <!-- BEGIN [SIDE MENU] -->
+      <div class="block-side-menu">
+        <ul class="side-menu sl">
+          <li class="active">
+            <span>Письменный перевод</span>
+            <ul>
+              <li><a href="#">Технический перевод</a></li>
+              <li><a href="#">Юридический перевод</a></li>
+              <li><a href="#">Экономический перевод</a></li>
+              <li><a href="#">Маркетинг, реклама, СМИ</a></li>
+              <li><a href="#">Научный перевод</a></li>
+              <li><a href="#">Медицинский перевод</a></li>
+              <li><a href="#">Перевод нефтегазовой тематики</a></li>
+              <li class="active"><span>Художественный перевод</span></li>
+              <li><a href="#">Финансовый перевод</a></li>
+              <li><a href="#">Перевод дипломов, аттестатов, свидетельств</a></li>
+              <li><a href="#">Перевод сайта</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Устный перевод</a></li>
+          <li><a href="#">Нотариальные услуги</a></li>
+          <li><a href="#">Легализация документов</a></li>
+          <li><a href="#">Верстка документов</a></li>
+          <li><a href="#">Личный перевод</a></li>
+          <li><a href="#">Срочный перевод</a></li>
+          <li><a href="#">Специализация</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <!-- END [SIDE MENU] -->
+
+      <!-- BEGIN [ORDER FORM] -->
+      <form class="form-order" action="#" method="get">
+        <h3 class="form-order-title">Оставить заявку</h3>
+        <h4 class="form-order-subtitle">Мы ответим в течении 30 минут!</h4>
+
+        <input type="text" name="name" class="form-input" placeholder="ФИО">
+        <input type="email" name="email" class="form-input" placeholder="Почта">
+        <input type="tel" name="phone" class="form-input" placeholder="Телефон">
+
+        <div class="form-upload form-order-upload">
+          <div class="form-upload-title">Загрузите файл</div>
+          <input type="file" name="file" class="form-file">
+          <div class="form-upload-formats">
+            <span>Доступные форматы</span>
+            <div class="upload-formats-popup">
+              <div class="upload-formats-popup-title">Автоподсчёт слов доступен для файлов:</div>
+              <ul class="upload-formats-popup-list sl">
+                <li>
+                  <i class="upload-format-icon icon-format-text"></i>
+                  <span class="upload-format-name">text</span>
+                </li>
+                <li>
+                  <i class="upload-format-icon icon-format-pdf"></i>
+                  <span class="upload-format-name">pdf</span>
+                </li>
+                <li>
+                  <i class="upload-format-icon icon-format-xls"></i>
+                  <span class="upload-format-name">xls</span>
+                </li>
+                <li>
+                  <i class="upload-format-icon icon-format-xlsx"></i>
+                  <span class="upload-format-name">xlsx</span>
+                </li>
+                <li>
+                  <i class="upload-format-icon icon-format-doc"></i>
+                  <span class="upload-format-name">doc</span>
+                </li>
+                <li>
+                  <i class="upload-format-icon icon-format-docx"></i>
+                  <span class="upload-format-name">docx</span>
+                </li>
+                <li>
+                  <i class="upload-format-icon icon-format-odt"></i>
+                  <span class="upload-format-name">odt</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <textarea name="comment" class="form-input" placeholder="Комментарий"></textarea>
+
+        <button class="form-btn" type="submit">Отправить</button>
+      </form>
+      <!-- END [ORDER FORM] -->
+    </div>
+
+    <div class="r-col">
+      <!-- BEGIN [BREADCRUMBS] -->
+      <div class="breadcrumbs">
+        <ul class="breadcrumbs-list sl">
+          <li>
+            <a href="#">Главная</a>
+            <span>&gt;</span>
+          </li>
+          <li>
+            <a href="#">Письменный перевод</a>
+            <span>&gt;</span>
+          </li>
+          <li>
+            <span>Художественный перевод</span>
+          </li>
+        </ul>
+      </div>
+      <!-- END [BREADCRUMBS] -->
+
+      <!-- BEGIN [CONTENT] -->
+      <div class="block-article">
+        <h2>Художественный перевод</h2>
+
+        <img src="http://placehold.it/615x266" alt="post image" class="article-image-alignnone">
+
+        <p>Художественный перевод исторически является одним из самых сложных. Он не сравнится с деловым переводом, когда официальные фразы должны передать ту информацию, которую ждут. Он не похож на медицинский перевод, где важна точная формулировка и знание специфических терминов, а вот отсутствие стройности предложения вполне простительно.</p>
+
+        <p><b>Художественный перевод с любого языка должен быть выполнен так, чтобы атмосфера сюжета, стиль автора сохранились в полной мере.</b></p>
+
+        <p>Умудриться сделать текст интересным, читабельным, сохранить его стилистику, передать задумку автора – это талант… Талант переводчика, который взялся за эту работу. Осваивать теорию и практику художественного перевода настоящему переводчику предстоит всю жизнь.</p>
+
+        <div class="service-points">
+          <p class="sp-desc">И неудивительно, что перевод художественных текстов имеет множество особенностей и, само собой, проблем:</p>
+
+          <ol class="sp-list">
+            <li>
+              <p class="sp-name">Полное отсутствие дословности в переводе</p>
+              <div class="sp-text">Художественный перевод не предполагает дословность, при работе с текстом. Именно поэтому, художественный перевод вызывает множество разногласий. Все наши специалисты по художественному переводу, немного писатели, немного фантазеры и просто очень творческие люди, способные проникнуть в саму суть текста.</div>
+            </li>
+
+            <li>
+              <p class="sp-name">Перевод устойчивых выражений (афоризмов, идиом и т.д.) </p>
+              <div class="sp-text">Этот момент не так сложен, как мог бы показаться на первый взгляд. Он требует только большого словарного запаса и наличия специализированного словаря.</div>
+            </li>
+
+            <li>
+              <p class="sp-name">Игра слов, юмор</p>
+              <div class="sp-text">Один из самых интересных моментов в художественном переводе – когда переводимый текст имеет юмористическую или ироничную подоплеку. Надо обладать особым мастерством, чтобы умудриться сохранить игру слов, которую подразумевает автор.</div>
+            </li>
+
+            <li>
+              <p class="sp-name">Соблюдение стиля, культуры и эпохи</p>
+              <div class="sp-text">Переводчик художественных текстов должен быть в какой-то мере исследователем. Трудно переводить текст другой эпохи, другой культуры, если вы не знакомы с ее особенностями. Не менее сложно работать с текстом, если он изобилует какими-то религиозными цитатами, сравнениями и т.д.</div>
+            </li>
+          </ol>
+        </div>
+
+        <p>Это, конечно, далеко не все особенности и проблемы художественного перевода. Обязательно стоит обратить внимание на специфику передачи информации в переводе художественной литературы и особенности перевода поэзии.</p>
+        <p>Но те моменты, которые были оговорены, являются основными и именно они делают работу переводчиков Бюро переводов «Универсал» такой сложной и интересной.</p>
+
+        <div class="author-box">
+          <img src="http://placehold.it/90x120" alt="author image" class="author-box-image">
+
+          <div class="author-box-content">
+            <div class="author-box-name">Переводчик: Юлия Эдуардовна</div>
+
+            <p>Закончила Финансовую Академию при правительстве РФ. Более 15 лет опыта работы в сфере переводов. Основные направления переводческой деятельности — лингвистика, литература, финансы, экономика, банковского дело, кино, кулинария, маркетинг, живопись, музыка,спорт. Прекрасно переводит художественные тексты, одновременно сохраняя задумку автора и придавая тексту свою некоторую творческую индивидуальность.</p>
+          </div>
+        </div>
+
+        <div class="price-prompt price-prompt-">
+          Отправьте нам Ваш файл<br>
+          и получите <b>точную стоимость перевода</b>
+        </div>
+
+        <button class="btn btn-pricecalc btn-pricecalc-imaged">Рассчитать стоимость</button>
+      </div>
+      <!-- END [CONTENT] -->
+    </div>
+  </div>
+
+  <!-- BEGIN [FOOTER] -->
+  <div class="site-footer-wrapper">
+    <footer class="site-footer">
+      <div class="footer-link-block">
+        <div class="footer-link-col">
+          <ul class="footer-menu">
+            <li>
+              <span>О компании</span>
+              <ul class="footer-menu">
+                <li><a href="#">История</a></li>
+                <li><a href="#">Новости</a></li>
+                <li><a href="#">Лица</a></li>
+                <li><a href="#">Отзывы</a></li>
+                <li><a href="#">Наши клиенты</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Специализация</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Цены</a></li>
+            <li><a href="#">Как оплатить</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-link-col">
+          <ul class="footer-menu">
+            <li>
+              <span>Письменный перевод</span>
+              <ul class="footer-menu">
+                <li><a href="#">технический перевод</a></li>
+                <li><a href="#">юридический перевод</a></li>
+                <li><a href="#">экономический перевод</a></li>
+                <li><a href="#">маркетинг, реклама, СМИ</a></li>
+                <li><a href="#">научный перевод</a></li>
+                <li><a href="#">медицинский перевод</a></li>
+                <li><a href="#">перевод нефтегазовой тематики</a></li>
+                <li><a href="#">художественный перевод</a></li>
+                <li><a href="#">финансовый перевод</a></li>
+                <li><a href="#">перевод дипломов, аттестатов, свидетельств</a></li>
+                <li><a href="#">перевод сайта</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-link-col">
+          <ul class="footer-menu">
+            <li>
+              <span>Устный перевод</span>
+              <ul class="footer-menu">
+                <li><a href="#">Последовательный перевод</a></li>
+                <li><a href="#">Синхронный перевод</a></li>
+              </ul>
+            </li>
+            <li>
+              <span>Нотариальные услуги</span>
+              <ul class="footer-menu">
+                <li><a href="#">Нотариальное заверение переводов</a></li>
+                <li><a href="#">Нотариальное заверение документов</a></li>
+                <li><a href="#">Заверение печатью бюро</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-link-col">
+          <ul class="footer-menu">
+            <li>
+              <span>Легализация документов</span>
+              <ul class="footer-menu">
+                <li><a href="#">Апостиль</a></li>
+                <li><a href="#">Консульская легализация</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Верстка документов</a></li>
+            <li><a href="#">Личный перевод</a></li>
+            <li><a href="#">Срочный перевод</a></li>
+            <li><a href="#">Контакты</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-info-block">
+        <div class="footer-left">
+          <p>
+            График работы: с 9:00 до 18:00
+            <a href="mailto:zakaz@univer-co.ru" class="footer-email">zakaz@univer-co.ru</a>
+            <a href="skype:univer-co?call" class="footer-skype">univer-co</a>
+          </p>
+          <p>
+            Москва: <span class="footer-phone">+7 (123) 456 78 90</span>, Калининград: <span class="footer-phone">+7 (123) 456 78 90</span>
+          </p>
+
+          <div class="footer-buttons">
+            <button class="btn btn-callback">Обратный звонок</button>
+            <button class="btn btn-pricecalc">Рассчитать стоимость</button>
+          </div>
+        </div>
+
+        <div class="footer-right">
+          <a href="#" class="footer-sitemap-link">Карта сайта</a>
+
+          <ul class="footer-social-links sl">
+            <li class="social-vimeo"><a href="#"><i class="icon-social-vimeo"></i></a></li>
+            <li class="social-twitter"><a href="#"><i class="icon-social-twitter"></i></a></li>
+            <li class="social-gplus"><a href="#"><i class="icon-social-gplus"></i></a></li>
+            <li class="social-facebook"><a href="#"><i class="icon-social-facebook"></i></a></li>
+            <li class="social-ok"><a href="#"><i class="icon-social-ok"></i></a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-copyright">
+        <div class="footer-copyright-text">&copy; Бюро переводов &laquo;Универсал&raquo;, 2014</div>
+
+        <div class="footer-studio">
+          <a href="#" class="footer-studio-logo">VikiWeb</a>
+          <a href="#">Создание и продвижение сайта</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <!-- END [FOOTER] -->
+
+  <!-- BEGIN [CALLBACK POPUP] -->
+  <div class="callback-popup" id="js-popup-callback">
+    <h3 class="popup-title">Обратный звонок</h3>
+    <div class="popup-subtitle">Мы ответим в течении 30 минут!</div>
+
+    <form action="#" class="form-callback">
+      <input type="text" name="name" class="form-input" placeholder="ФИО">
+      <input type="tel" name="phone" class="form-input" placeholder="Телефон">
+      <textarea name="comment" class="form-input" placeholder="Комментарий (необязательно)"></textarea>
+
+      <div class="form-callback-button-wrapper">
+        <button type="submit" class="form-btn">Отправить</button>
+      </div>
+    </form>
+  </div>
+  <!-- END [CALLBACK POPUP] -->
+
+  <!-- BEGIN [PRICE CALCULATOR POPUP] -->
+  <div class="pricecalc-popup" id="js-popup-pricecalc">
+    <h3 class="popup-title">Рассчитать стоимость</h3>
+
+    <ul class="pc-steps-overview sl">
+      <li>
+        <span class="pc-step-number">1</span>
+        <span class="pc-step-text">Направление перевода</span>
+      </li>
+      <li>
+        <span class="pc-step-number">2</span>
+        <span class="pc-step-text">Текст и сроки</span>
+      </li>
+      <li>
+        <span class="pc-step-number">3</span>
+        <span class="pc-step-text">Контактные данные</span>
+      </li>
+    </ul>
+
+    <form class="pc-form" action="#">
+      <ul class="pc-steps sl">
+        <li>
+          <h3 class="pc-step-title">1. Выберите направление перевода</h3>
+
+          <!--- Как добавить языки в переключатель:
+                Добавляем название языка в option в .pc-lang-select, а его иконку - в .pc-langs-from
+                так, чтоб порядковые индексы соответствующих языка и иконки были одинаковыми.
+                Спасибо за понимание)
+          -->
+
+          <ul class="pc-langs-from">
+            <li>
+              <img src="img/content/icon-lang-en.png" alt="английский">
+            </li>
+            <li>
+              <img src="img/content/icon-lang-de.png" alt="английский">
+            </li>
+            <li>
+              <img src="img/content/icon-lang-en.png" alt="английский">
+            </li>
+            <li>
+              <img src="img/content/icon-lang-en.png" alt="английский">
+            </li>
+            <li>
+              <img src="img/content/icon-lang-en.png" alt="английский">
+            </li>
+          </ul>
+
+          <select name="lang-from" class="pc-lang-select pc-lang-select-from">
+            <option value="en">
+              Английский
+            </option>
+            <option value="en">
+              Немецкий
+            </option>
+            <option value="en">
+              Английский
+            </option>
+            <option value="en">
+              Английский
+            </option>
+            <option value="en">
+              Английский
+            </option>
+          </select>
+
+
+          <ul class="pc-langs-to">
+            <li>
+              <img src="img/content/icon-lang-en.png" alt="английский">
+            </li>
+            <li>
+              <img src="img/content/icon-lang-en.png" alt="английский">
+            </li>
+            <li>
+              <img src="img/content/icon-lang-de.png" alt="английский">
+            </li>
+            <li>
+              <img src="img/content/icon-lang-en.png" alt="английский">
+            </li>
+            <li>
+              <img src="img/content/icon-lang-en.png" alt="английский">
+            </li>
+          </ul>
+
+          <select name="lang-from" class="pc-lang-select pc-lang-select-to">
+            <option value="en">
+              Английский
+            </option>
+            <option value="en">
+              Английский
+            </option>
+            <option value="en">
+              Немецкий
+            </option>
+            <option value="en">
+              Английский
+            </option>
+            <option value="en">
+              Английский
+            </option>
+          </select>
+
+          <div class="lang-select-arrow"></div>
+
+          <div class="pc-lang-content">
+            <p>
+              Мы переводим более чем с 70 языков мира. Если вдруг необходимого Вам языка не оказалось в списке, свяжитесь с нами по телефону <span class="phone">8 (499) 390-80-24</span>.
+            </p>
+            <p class="no-idea">
+              Мы обязательно Вам поможем!
+            </p>
+          </div>
+
+          <div class="pc-buttons">
+            <button class="pc-btn pc-btn-prev" type="button" disabled><i class="icon-pc-prev"></i> Обратно</button>
+            <button class="pc-btn pc-btn-next" type="button">Дальше <i class="icon-pc-next"></i></button>
+          </div>
+        </li>
+
+        <li>
+          <h3 class="pc-step-title">2. Текст и сроки</h3>
+
+          <div class="pc-upload">
+            <div class="pc-upload-formats">
+              Доступные форматы
+              <div class="upload-formats-popup">
+                <div class="upload-formats-popup-title">Автоподсчёт слов доступен для файлов:</div>
+                <ul class="upload-formats-popup-list sl">
+                  <li>
+                    <i class="upload-format-icon icon-format-text"></i>
+                    <span class="upload-format-name">text</span>
+                  </li>
+                  <li>
+                    <i class="upload-format-icon icon-format-pdf"></i>
+                    <span class="upload-format-name">pdf</span>
+                  </li>
+                  <li>
+                    <i class="upload-format-icon icon-format-xls"></i>
+                    <span class="upload-format-name">xls</span>
+                  </li>
+                  <li>
+                    <i class="upload-format-icon icon-format-xlsx"></i>
+                    <span class="upload-format-name">xlsx</span>
+                  </li>
+                  <li>
+                    <i class="upload-format-icon icon-format-doc"></i>
+                    <span class="upload-format-name">doc</span>
+                  </li>
+                  <li>
+                    <i class="upload-format-icon icon-format-docx"></i>
+                    <span class="upload-format-name">docx</span>
+                  </li>
+                  <li>
+                    <i class="upload-format-icon icon-format-odt"></i>
+                    <span class="upload-format-name">odt</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <span class="pc-upload-text">Загрузите файл или введите задание</span>
+
+            <input type="file" name="file" class="form-file pc-file">
+          </div>
+
+          <textarea name="message" class="form-input" placeholder="Введите текст"></textarea>
+          <input type="text" class="form-input pc-input-work-time" name="work-time" placeholder="Срок выполнения работы">
+
+          <div class="pc-buttons">
+            <button class="pc-btn pc-btn-prev" type="button" disabled><i class="icon-pc-prev"></i> Обратно</button>
+            <button class="pc-btn pc-btn-next" type="button">Дальше <i class="icon-pc-next"></i></button>
+          </div>
+        </li>
+
+        <li>
+          <h3 class="pc-step-title">3. Контактные данные</h3>
+
+          <div class="pc-contacts">
+            <input type="text" class="form-input pc-input-name" name="name" placeholder="ФИО">
+            <input type="email" class="form-input pc-input-email" name="email" placeholder="E-mail">
+            <input type="tel" class="form-input pc-input-phone" name="phone" placeholder="Телефон">
+          </div>
+
+          <div class="pc-buttons">
+            <button class="pc-btn pc-btn-prev" type="button" disabled><i class="icon-pc-prev"></i> Обратно</button>
+            <button class="pc-btn pc-btn-submit" type="submit">Готово <i class="icon-pc-next"></i></button>
+          </div>
+        </li>
+      </ul>
+    </form>
+  </div>
+  <!-- END [PRICE CALCULATOR POPUP] -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="js/placeholders.js"></script>
+  <script src="js/jquery.bxslider.min.js"></script>
+  <script src="js/jquery.maskedinput.js"></script>
+  <script src="js/jquery.fancybox.pack.js"></script>
+  <script src="js/jquery.formstyler.min.js"></script>
+
+  <!-- only for this page!!! -->
+  <script src="js/jquery.raty.js"></script>
+  <!-- end -->
+
+  <script src="js/script.js"></script>
+</body>
+</html>

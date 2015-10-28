@@ -1,0 +1,16 @@
+.gulp-sync
+.sass-cache
+node_modules
+*.map
+psdows
+
+# содержимое следующих директорий будет сгенерировано из исходников
+/img
+/js
+/css
+
+# файлы сгенерированных спрайтов
+/src/styles/sprites/*
+
+/psd
+.idea

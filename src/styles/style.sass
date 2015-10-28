@@ -1,0 +1,2226 @@
+@import base
+@import fonts
+@import sprites/sprite
+
+
+$site-width: 980px
+$color-hover: #8c727b
+$color-link: #41a8bf
+
+/*
+  общие стили
+
+body
+  font-family: $font-opensans
+  font-size: 14px
+
+=border-underline
+  text-decoration: none
+  border-bottom: 1px solid
+
+.btn
+  +themed-button
+  padding: 10px 14px
+
+  font-size: 14px
+
+  color: white
+  border-radius: 2px
+
+  transition: background 0.2s linear
+
+  &:hover
+    background: $color-hover
+
+  &:focus
+    outline: none
+
+.form-btn
+  @extend .btn
+  padding: 7px
+
+  text-transform: uppercase
+  font-size: 24px
+
+  background: #41a8bf
+
+.form-input
+  +themed-input
+  padding: 9px 15px
+
+  border: 1px solid transparent
+  color: $color-hover
+
+  &:focus
+    border-color: $color-hover
+
+  +placeholder
+    color: #666666
+
+  &:focus
+    +placeholder
+      color: transparent
+
+textarea.form-input
+  resize: vertical
+
+/*
+  шапка
+
+.site-header
+  +fixed-centered($site-width)
+  padding-top: 20px
+
+.site-logo
+  float: left
+  margin-right: 100px
+  margin-top: 10px
+
+.site-logo-link
+  display: block
+  +size(147px, 104px)
+
+  +hide-text
+  background: url(../img/site-logo.png)
+
+
+.header-center
+  margin-top: 4px
+  padding-left: 247px
+
+.header-email
+  color: #41a9c0
+  font-weight: bold
+  font-size: 16px
+
+  &:before
+    content: ""
+    +msprite($icon-email)
+    margin-right: 5px
+
+  &:hover, &:focus
+    color: $color-hover
+
+    &:before
+      +sprite-position($icon-email-active)
+
+.header-tagline
+  margin-top: 22px
+  border-left: 1px solid
+  padding-left: 17px
+
+  font-size: 28px
+  font-weight: normal
+  line-height: 35px
+  color: #8d737c
+
+
+.header-right
+  float: right
+
+.btn-callback
+  background: #41a8bf
+  margin-right: 4px
+
+.btn-pricecalc
+  background: #d99379
+  font-weight: bold
+
+.header-contacts
+  margin-top: 10px
+
+  font-size: 12px
+  text-align: right
+
+.header-worktime
+  margin-bottom: 5px
+
+.header-phone-line
+  font-size: 14px
+
+.header-phone
+  margin-left: 7px
+  font-size: 18px
+  font-weight: bold
+
+
+/*
+  строка меню в шапке
+
+.site-nav
+  clear: both
+  padding-top: 30px
+  position: relative
+
+.site-nav-shadow
+  position: absolute
+  left: 0
+  right: 0
+  bottom: -30px
+  height: 30px
+  overflow: hidden
+  z-index: 100
+  pointer-events: none
+
+  &:after
+    content: ""
+    position: absolute
+    left: 0
+    right: 0
+    bottom: 39px
+    height: 11px
+    background: red
+
+    box-shadow: 0 0 27px 7px rgba(black, .5)
+    border-radius: 50%
+
+.site-nav-menu
+  border-top: 1px solid #e2e3e7
+  +justify-children
+
+  font-size: 1px
+  line-height: 0
+
+  > li
+    display: inline-block
+    font-size: 16px
+    line-height: 46px
+
+    > a
+      display: block
+      text-decoration: none
+      border-bottom: 6px solid transparent
+
+      &:hover
+        color: $color-hover
+        border-bottom-color: $color-hover
+
+
+/*
+  слайдер на главной странице
+
+// фон, который растягивается на всю ширину окна
+.front-slider-wrapper
+  position: relative
+  background: url(../img/bg-front-slider.jpg) center top
+  background-size: cover
+  overflow: hidden
+
+  height: 615px
+
+// полоса внизу - собственно, и есть слайдер. Тоже растянута на всю ширину.
+.front-slider
+  position: absolute
+  z-index: 1
+  bottom: 50px
+  left: 0
+  right: 0
+
+  background: #8c727b
+  background: rgba(#8c727b, .95)
+
+  counter-reset: front-slide
+
+// ограничитель шириной в 980px
+.front-slides-wrapper
+  position: relative
+  +fixed-centered($site-width)
+
+  // отступ для кнопок вперед/назад
+  padding: 0 30px
+
+// кадр просмотра слайдера, нужен, чтоб не учитывать padding.
+.front-slider-viewbox
+  overflow: hidden
+
+// прорвавшись сквозь нескончаемую череду врапперов, мы почти пришли к своей
+// цели! Вот он - контейнер самих слайдеров, ура!
+.front-slides
+  width: 100000px
+  transition: margin-left 0.2s linear
+  font-size: 1px
+
+  // это и есть сами слайды. Но не обольщайтесь, внутри тоже есть врапперы.
+  > li
+    position: relative
+    display: inline-block
+    vertical-align: top
+
+    // width: 233px
+    width: 230px
+    top: 0 // только для того, чтоб работал transition
+
+    cursor: pointer
+
+    transition: top 0.2s linear, background-color 0.2s linear
+
+    // карточка активного слайда чуть приподнята. Хотя у родителя этого элемента
+    // есть overflow: hidden, мы можем вынести карточку за его границы, сделав карточку
+    // абсолютно позиционированной (поскольку у родителя с oh position: static)
+    &.active
+      position: absolute
+      top: -10px
+      background: white
+
+      .front-slide-info
+        color: #8c727b
+
+        // номер слайда
+        &:before
+          content: counter(front-slide) "."
+
+      + li
+        margin-left: 223px
+
+    // убираем полоску справа у последней видимой карточки
+    // класс вешается через скрипт.
+    &.lfix, &.rfix
+      &:after
+        content: none
+
+    // полоска справа от карточки
+    &:after
+      content: ""
+      position: absolute
+      // right: -1px
+      right: 0
+      top: 10px
+      bottom: 10px
+      width: 1px
+      background: white
+
+    &.active:after
+      content: none
+
+// кнопки управления слайдером
+.front-slider-prev, .front-slider-next
+  position: absolute
+  top: 50%
+  margin-top: -25px
+
+  +hide-text
+
+.front-slider-prev
+  left: 0
+  +msprite($icon-front-left)
+
+  &:hover
+    +sprite-position($icon-front-left-active)
+
+.front-slider-next
+  right: 0
+  +msprite($icon-front-right)
+
+  &:hover
+    +sprite-position($icon-front-right-active)
+
+// карточка слайда (та фигня, которая показывается внизу в коричневой полосе, а не сама
+// картинка и текст слайда)
+.front-slide-info
+  position: relative
+  padding: 35px 25px 20px 25px
+
+  color: white
+  font-weight: $font-weight-light
+  font-size: 18px
+
+  counter-increment: front-slide
+
+  &:before
+    content: counter(front-slide)
+    position: absolute
+    left: 25px
+    top: 35px
+    font-size: 60px
+    font-weight: bold
+    line-height: 1
+
+.front-slide-info-text
+  padding-left: 65px
+  padding-top: 5px
+  display: block
+  user-select: none
+
+// а это - само содержимое слайда, которое клонируется через скрипты внутрь .front-slider-viewport
+// и растягивается на всю его высоту и ширину. Собственно, этот элемент должен быть
+// видим только тогда, когда находится внутри .front-slider-viewport.
+.front-slide-content
+  position: relative
+  padding: 22px 0
+  height: 100%
+
+.front-slider
+  .front-slide-content
+    display: none
+
+// элемент, в котором показывается содержимое слайда
+.front-slider-viewport
+  +fixed-centered($site-width)
+  height: 100%
+  position: relative
+
+  // тень снизу
+  &:after
+    content: ""
+    position: absolute
+    left: 0
+    right: 0
+    bottom: -12px
+    height: 11px
+    background: red
+
+    box-shadow: 0 0 27px 7px rgba(black, .5)
+    border-radius: 50%
+
+.front-slide-header
+  margin-bottom: 5px
+
+  text-align: right
+  font-size: 85px
+  line-height: 1
+  color: #80848b
+  text-transform: uppercase
+  font-weight: $font-weight-light
+
+.front-slide-block
+  +clr
+  background: #41a8bf
+  color: white
+  width: 610px
+
+  padding: 40px 50px 30px
+
+  font-size: 14px
+  line-height: 17px
+
+.fsb-title
+  font-size: 30px
+  font-weight: bold
+  margin-bottom: 22px
+
+.fsb-action-link
+  display: block
+  float: left
+  margin-top: 20px
+
+  +border-underline
+
+  &:hover, &:focus
+    color: $color-hover
+
+.fsb-image
+  position: absolute
+  right: 10px
+  bottom: 0
+  pointer-events: none
+
+
+/*
+  содержимое сайта
+
+.site-content
+  +clr
+  +fixed-centered($site-width)
+  position: relative
+  margin-bottom: 30px
+
+  .l-col
+    float: left
+    width: 315px
+
+  .r-col
+    float: left
+    padding-top: 34px
+    padding-left: 50px
+    width: 665px
+
+.page-front
+  .site-content
+    .l-col
+      margin-top: -30px
+
+
+/*
+  боковое меню
+
+.side-menu
+  padding: 25px 0 20px
+
+  background: #41a8bf
+
+  font-size: 16px
+  line-height: 45px
+  font-weight: bold
+
+  > li
+    padding: 0 40px
+    position: relative
+    color: white
+
+    &:hover, &:focus
+      background: url(../img/bg-side-menu.png) center top repeat-y
+      color: #bee8f1
+
+      &:before, &:after
+        opacity: 1
+
+      > a, span
+        color: inherit
+
+    &.active
+      color: #ddddcb
+
+      &:hover, &:focus
+        background: none
+
+        &:before, &:after
+          opacity: 0
+
+    &:last-child
+      > a
+        border-bottom: none
+
+    &.last-child
+      > a
+        border-bottom: none
+
+    > a
+      position: relative
+      display: block
+      text-decoration: none
+      border-bottom: 1px solid white
+
+      &:before
+        content: "\2022"
+        margin-right: 5px
+
+    > ul
+      // nested menu
+      +semantic-list
+      font-size: 14px
+      font-weight: normal
+      line-height: 24px
+      margin-left: 12px
+      color: white
+
+      > li
+        &:before
+          content: "\2022"
+          margin-right: 5px
+
+        > a, span
+          color: inherit
+
+        > a
+          text-decoration: none
+          +hover-underline
+
+        &.active
+          color: #d5daca
+
+
+/*
+  форма заявки
+
+.form-order
+  margin-top: 30px
+  padding: 30px 40px 40px
+
+  background: #ddddcb
+  color: #8c727b
+
+  font-size: 14px
+
+  .form-input
+    margin-top: 8px
+    display: block
+    width: 100%
+
+  textarea.form-input
+    margin-top: 10px
+    height: 115px
+    max-height: 400px
+
+  .form-btn
+    margin-top: 10px
+    width: 100%
+
+.form-order-mini
+  textarea.form-input
+    height: 165px
+
+.form-order-title
+  margin-bottom: 3px
+
+  font-weight: $font-weight-light
+  font-size: 26px
+  text-align: center
+  text-transform: uppercase
+
+.form-order-subtitle
+  font-weight: $font-weight-light
+  font-size: 14px
+  text-align: center
+
+
+.form-order-upload
+  margin-top: 15px
+
+.form-file
+  font-size: 11px
+  width: 100%
+
+  &::-webkit-file-upload-button
+    font-size: 14px
+
+.form-upload-formats
+  position: relative
+  margin-top: 10px
+  display: inline-block
+
+  font-size: 11px
+  color: #41a8bf
+  border-bottom: 1px dashed
+
+  cursor: pointer
+
+  &:hover, &:focus
+    color: $color-hover
+
+    .upload-formats-popup
+      display: block
+
+    &:before
+      content: ''
+      position: absolute
+      z-index: 10
+      top: -15px
+      left: -20px
+      right: -20px
+      height: 30px
+      background: rgba(red, .5)
+
+.upload-formats-popup
+  position: absolute
+  z-index: 100
+  bottom: 20px
+  left: 50%
+  transform: translateX(-50%)
+  padding: 15px 20px
+
+  background: white
+  border: 1px solid #ddddcb
+  color: #666666
+
+  display: none
+
+  &:before, &:after
+    content: ""
+    position: absolute
+    left: 50%
+    margin-left: -10px
+
+  &:before
+    bottom: -10px
+    +triangle(20px, 10px, white, down)
+
+  &:after
+    bottom: -11px
+    +triangle(20px, 10px, #ddddcb, down)
+    z-index: -10
+
+.upload-formats-popup-list
+  margin-top: 5px
+  width: 230px
+  font-size: 0
+
+  > li
+    display: inline-block
+    margin-right: 9px
+    font-size: 11px
+
+.icon-format-text
+  +msprite($icon-format-text)
+  display: block
+
+.icon-format-pdf
+  +msprite($icon-format-pdf)
+  display: block
+
+.icon-format-xls
+  +msprite($icon-format-xls)
+  display: block
+
+.icon-format-xlsx
+  +msprite($icon-format-xlsx)
+  display: block
+
+.icon-format-doc
+  +msprite($icon-format-doc)
+  display: block
+
+.icon-format-docx
+  +msprite($icon-format-docx)
+  display: block
+
+.icon-format-odt
+  +msprite($icon-format-odt)
+  display: block
+
+
+/*
+  блок клиентов (в сайдбаре)
+
+.block-clients
+  +clr
+  margin-top: 30px
+  padding: 30px
+  border: 1px solid #ddddcb
+  text-align: center
+
+.block-clients-title
+  text-transform: uppercase
+  font-size: 26px
+  font-weight: $font-weight-light
+  text-decoration: none
+
+  color: #8c727b
+  border-bottom: 1px solid transparent
+
+  &:hover, &:focus
+    border-bottom-color: #8c727b
+
+.clients-list
+  margin-top: 20px
+
+  +justify-children
+  font-size: 1px
+
+  > li
+    display: inline-block
+
+.all-clients-link
+  margin-top: 5px
+  float: right
+
+  color: #41a8bf
+  font-size: 14px
+  text-decoration: none
+  border-bottom: 1px solid
+
+  &:hover, &:focus
+    color: $color-hover
+
+
+/*
+  таблица цен
+
+.price-title
+  margin-bottom: 18px
+
+  font-size: 24px
+  font-weight: $font-weight-light
+  text-transform: uppercase
+  color: #8c727b
+
+.prices
+  width: 100%
+
+  text-align: left
+  font-size: 14px
+  color: black
+
+  th, td
+    padding: 8px 20px
+
+    &:nth-child(1)
+      width: 290px
+
+    &:nth-child(2)
+      width: 164px
+
+    &:nth-child(3)
+      width: 164px
+
+  th
+    font-size: 12px
+    font-weight: bold
+    background: #ddddcb
+    color: #8c727b
+
+  tr
+    &:nth-child(2n)
+      background: #f8f8f5
+
+  a
+    color: $color-link
+
+    &:hover, &:focus
+      color: $color-hover
+
+  .price-desc
+    padding-top: 16px
+    padding-top: 16px
+
+    p
+      font-size: 12px
+
+.price-lang-icon
+  margin-right: 3px
+  vertical-align: middle
+
+.price-lang-link
+  text-decoration: none
+  border-bottom: 1px solid
+  font-weight: bold
+
+  color: #d99379 !important
+
+  &:hover, &:focus
+    color: $color-hover !important
+
+.price-full-link
+  font-size: 12px
+
+.block-price .btn-pricecalc
+  margin-top: 20px
+
+
+/*
+  скидки и акции (без модификаторов - широкий блок, который показывается на главной)
+
+.block-discounts
+  +clr
+  position: relative
+  margin-top: 30px
+  margin-bottom: 26px
+  padding: 30px 60px 15px
+
+  line-height: 1
+  font-weight: bold
+
+  background: url(../img/bg-discounts-pattern.jpg)
+  color: #8c727b
+
+  .bx-prev, .bx-next
+    position: absolute
+    top: 50%
+    margin-top: -25px
+
+    +hide-text
+
+  .bx-prev
+    left: 20px
+    +msprite($icon-discount-left)
+
+    &:hover
+      +sprite-position($icon-discount-left-active)
+
+  .bx-next
+    right: 20px
+    +msprite($icon-discount-right)
+
+    &:hover
+      +sprite-position($icon-discount-right-active)
+
+.discount-list
+  > li
+    display: table
+
+.discount-image
+  float: left
+  margin-right: 10px
+
+.discount-content
+  display: table-cell
+  vertical-align: middle
+
+.discount-em1
+  font-size: 17px
+  font-weight: normal
+  margin-bottom: 10px
+
+.discount-em2
+  font-size: 54px
+  text-transform: uppercase
+
+.discount-em3
+  font-size: 64px
+  text-transform: uppercase
+
+.discount-link
+  display: inline-block
+  margin-top: 30px
+
+  color: $color-link
+  font-weight: normal
+  text-decoration: none
+
+  border-bottom: 1px solid
+
+  &:hover, &:focus
+    color: $color-hover
+
+
+// тот же блок со скидками, только уже, который показывается в сайдбаре
+.discounts-narrow
+  padding-left: 40px
+  padding-right: 40px
+  text-align: center
+  margin-bottom: 0
+
+  .discount-image
+    float: none
+    display: inline-block
+    margin-right: 0
+    margin-bottom: 5px
+
+  .bx-prev
+    left: 10px
+
+  .bx-next
+    right: 10px
+
+  .discount-list
+    > li
+      display: block
+
+  .discount-em1
+    font-size: 15px
+
+  .discount-em2
+    font-size: 50px
+
+  .discount-link
+    margin-top: 25px
+
+  .discount-em3
+    font-size: 60px
+
+
+
+
+
+/*
+  блок новостей
+
+.block-news
+  +fixed-centered($site-width)
+  margin-top: -8px
+  padding: 20px 0 30px 30px
+  background: #8c727b
+  color: white
+  font-size: 14px
+
+  .news-title
+    display: inline-block
+    margin-bottom: 10px
+
+    font-size: 24px
+    font-weight: $font-weight-light
+    text-transform: uppercase
+
+    text-decoration: none
+    +hover-underline
+
+  .news-all-link
+    float: right
+    margin-top: 7px
+    margin-right: 37px
+
+    &:hover
+      color: #e2ac9c
+
+  .news-list
+    +clr
+
+    > li
+      float: left
+      width: 50%
+      padding-right: 45px
+
+  .news-item-image
+    float: left
+    margin-right: 17px
+
+  .news-item-header
+    margin-bottom: 20px
+
+  .news-item-date
+    font-weight: bold
+
+  .news-item-title
+    color: #e2ac9c
+
+    &:hover
+      color: white
+
+  .news-item-content
+    p
+      line-height: 17px
+
+
+/*
+  подвал
+
+.site-footer-wrapper
+  margin-top: 40px
+  background: #dededf
+
+.site-footer
+  padding-top: 60px
+  padding-bottom: 20px
+  border-bottom: 1px solid #9D9D95
+  +fixed-centered($site-width)
+
+  background: url(../img/bg-footer.png) right bottom no-repeat
+
+  font-size: 14px
+
+.footer-link-block
+  +justify-children
+  border-bottom: 1px solid #9D9D95
+  font-size: 1px
+  padding-bottom: 7px
+
+.footer-link-col
+  display: inline-block
+  vertical-align: top
+  max-width: 25%
+  font-size: 14px
+
+  text-align: left
+
+  &:last-child
+    padding-left: 0
+
+.footer-menu
+  +semantic-list
+  font-weight: bold
+  line-height: 22px
+
+  > li
+    margin-bottom: 17px
+
+  a
+    text-decoration: none
+
+    &:hover, &:focus
+      border-bottom: 1px solid
+
+  .footer-menu
+    font-weight: normal
+
+    > li
+      margin-bottom: 0
+
+      &:before
+        content: "\2022"
+        margin-right: 2px
+
+
+.footer-info-block
+  +clr
+  padding-top: 25px
+
+.footer-left
+  float: left
+  font-size: 14px
+
+  a
+    color: black
+    margin-left: 12px
+
+    &:hover
+      color: $color-hover
+
+  p
+    margin-bottom: 5px
+
+.footer-right
+  float: right
+
+.footer-sitemap-link
+  float: right
+  // +border-underline
+
+  &:before
+    content: ""
+    +msprite($icon-sitemap)
+    margin-right: 5px
+
+  &:hover, &:focus
+    color: $color-hover
+
+.footer-buttons
+  margin-top: 17px
+  margin-left: 8px
+
+.footer-social-links
+  +clr
+  clear: right
+  margin-top: 50px
+
+  > li
+    display: table
+    float: left
+    margin-right: 10px
+    text-align: center
+
+    +size(48px)
+    background: #9d9d95
+    border-radius: 2px
+
+    &:last-child
+      margin-right: 0
+
+    > a
+      display: table-cell
+      vertical-align: middle
+
+.footer-email
+  &:before
+    content: ""
+    +msprite($icon-footer-email)
+    vertical-align: middle
+    margin-right: 3px
+
+.footer-skype
+  &:before
+    content: ""
+    +msprite($icon-footer-skype)
+    vertical-align: middle
+    margin-right: 3px
+
+
+.social-vimeo
+  &:hover, &:focus
+    background: #3f71c3
+
+.social-twitter
+  &:hover, &:focus
+    background: #05a5c2
+
+.social-gplus
+  &:hover, &:focus
+    background: #d82f33
+
+.social-facebook
+  &:hover, &:focus
+    background: #4740a7
+
+.social-ok
+  &:hover, &:focus
+    background: #ff9600
+
+
+.icon-social-vimeo
+  +msprite($icon-social-vimeo)
+  vertical-align: middle
+
+.icon-social-twitter
+  +msprite($icon-social-twitter)
+  vertical-align: middle
+
+.icon-social-gplus
+  +msprite($icon-social-gplus)
+  vertical-align: middle
+
+.icon-social-facebook
+  +msprite($icon-social-facebook)
+  vertical-align: middle
+
+.icon-social-ok
+  +msprite($icon-social-ok)
+  vertical-align: middle
+
+
+.footer-copyright
+  +clr
+  padding-top: 10px
+
+.footer-studio
+  color: black
+  width: 275px
+  padding-top: 10px
+
+  a
+    &:hover, &:focus
+      color: $color-hover
+
+.footer-studio-logo
+  +imaged-link(url(../img/studio-logo.png), 51px, 50px)
+  display: inline-block
+  float: left
+  margin-right: 20px
+
+.footer-copyright-text
+  float: right
+  margin-top: 30px
+
+
+/*
+  всплывашка обратного звонка
+
+.fancybox-overlay
+  background: url(../img/ie8-bg-popup.png)
+  background: rgba(140, 114, 123, .6)
+
+.fancybox-close
+  position: absolute
+  right: 15px
+  top: 15px
+
+  +msprite($icon-popup-close)
+
+.fancybox-dpopup
+  min-width: 575px
+  left: 50% !important
+  margin-left: -287px
+
+  .fancybox-inner
+    min-width: 575px
+
+.callback-popup
+  position: relative
+  display: none
+  background: white
+  width: 575px
+  min-width: 575px
+  padding: 30px 50px 60px
+
+  text-align: center
+  font-size: 14px
+
+.popup-title
+  margin-bottom: 15px
+
+  font-size: 26px
+  font-weight: $font-weight-light
+  text-transform: uppercase
+
+  color: #8c727b
+
+.popup-subtitle
+  margin-bottom: 15px
+
+.form-callback
+  text-align: justify
+
+  .form-input
+    display: inline-block
+    width: 225px
+
+    border: 1px solid #DDDDCB
+
+  textarea.form-input
+    margin-top: 20px
+    height: 165px
+    width: 100%
+    max-height: 400px
+
+  .form-btn
+    margin-top: 30px
+    padding-left: 50px
+    padding-right: 50px
+
+.form-callback-button-wrapper
+  text-align: center
+
+
+/*
+  всплывашка калькулятора
+
+.pricecalc-popup
+  display: none
+  position: relative
+  padding: 30px 0 50px
+  width: 575px
+  min-width: 575px
+  background: white
+
+  .popup-title
+    margin-bottom: 25px
+    text-align: center
+
+// steps overview
+
+.pc-steps-overview
+  +clr
+  display: table
+  width: 100%
+  overflow: hidden
+  pointer-events: none
+  user-select: none
+  text-align: left
+
+  > li
+    position: relative
+    display: table-cell
+    vertical-align: middle
+    width: 33.33333333333333333%
+    height: 82px
+
+    font-size: 16px
+    background: #f3f3f3
+
+    padding-left: 65px
+    padding-right: 30px
+
+    &.passed
+      background: #ddddcb
+
+      &:before
+        +triangle(120px, 25px, #ddddcb, right)
+
+    &:before, &:after
+      content: ""
+      position: absolute
+      top: -20px
+
+    &:before
+      right: -10px
+      +triangle(120px, 25px, #f3f3f3, right)
+      z-index: 20
+
+    &:after
+      right: -17px
+      +triangle(120px, 25px, white, right)
+      z-index: 10
+
+    &:last-child
+      &:before, &:after
+        content: none
+
+.pc-step-number
+  position: absolute
+  top: 8px
+  left: 30px
+  font-size: 48px
+  font-weight: $font-weight-light
+
+.pc-step-text
+  line-height: 1
+
+// generic steps
+
+.pc-steps
+  padding: 0 50px
+
+  > li
+    display: none
+
+    &.active
+      display: block
+
+.pc-step-title
+  margin: 23px 0 23px
+  text-align: center
+
+// first step
+
+@import formstyler
+
+.pc-langs-from, .pc-langs-to
+  display: none
+
+.pc-lang-select
+  width: 215px
+
+  li
+    background-position: 10px center
+    background-repeat: no-repeat
+    padding-left: 40px
+    text-align: left
+
+    &:hover
+      color: black
+
+  .selected
+    color: black
+
+  .jq-selectbox__select
+    border-radius: 0
+    background: none
+    box-shadow: none
+    border: 1px solid #DDDDCB
+
+    background-position: 10px center
+    background-repeat: no-repeat
+    padding-left: 40px
+
+    height: 38px
+    line-height: 38px
+
+  .jq-selectbox__select-text
+    width: 100% !important
+    text-align: left
+
+  .jq-selectbox__trigger
+    border-left: none
+
+  .jq-selectbox__trigger-arrow
+    border-top-width: 10px
+    border-right-width: 10px
+    border-left-width: 10px
+
+    transition: border-color 0.2s linear
+
+  &.focused
+    .jq-selectbox__select
+      border: 1px solid #DDDDCB
+
+.pc-lang-select-from
+  float: left
+
+.pc-lang-select-to
+  float: right
+
+.lang-select-arrow
+  +msprite($icon-lang-select-arrow)
+  display: block
+  margin: 0 auto
+
+.pc-lang-content
+  clear: both
+  padding-top: 35px
+  font-size: 14px
+  text-align: center
+
+  p
+    margin-bottom: 14px
+
+  .phone
+    font-weight: bold
+
+  .no-idea
+    font-size: 22px
+
+// buttons
+
+.pc-buttons
+  +clr
+  margin-top: 30px
+
+.pc-btn
+  @extend .form-btn
+
+  height: 45px
+  padding: 0 28px
+
+  line-height: 45px
+
+  &:disabled
+    background: #e0dfdf
+
+    &:hover, &:focus
+      background: #e0dfdf
+
+  &.disabled
+    background: #e0dfdf
+
+    &:hover, &:focus
+      background: #e0dfdf
+
+.pc-btn-submit
+  background: #d99379
+
+.pc-btn-prev
+  float: left
+
+.pc-btn-next, .pc-btn-submit
+  float: right
+
+.icon-pc-prev
+  +msprite($icon-popup-prev)
+  vertical-align: -4px
+  margin-right: 15px
+
+.icon-pc-next
+  +msprite($icon-popup-next)
+  vertical-align: -4px
+  margin-left: 15px
+
+// second step
+
+.pc-upload
+  text-align: left
+  font-size: 14px
+  color: #666666
+
+.pc-upload-formats
+  @extend .form-upload-formats
+  margin-top: 0
+  float: right
+
+.pc-form-upload
+  width: 100%
+
+.pc-file
+  margin-top: 4px
+  width: 100%
+
+.pc-form
+  .form-input
+    border: 1px solid #DDDDCB
+    font-size: 14px
+
+    &:focus
+      border: 1px solid $color-hover
+
+  textarea.form-input
+    margin-top: 15px
+    width: 100%
+    height: 160px
+    max-height: 400px
+
+.pc-input-work-time
+  margin-top: 10px
+  width: 215px
+
+.pc-contacts
+  padding-bottom: 28px
+
+  .form-input
+    margin-bottom: 12px
+
+.pc-input-name
+  width: 100%
+
+.pc-input-email, .pc-input-phone
+  width: 225px
+
+.pc-input-email
+  float: left
+
+.pc-input-phone
+  float: right
+
+
+/*
+  хлебные крошки
+
+.breadcrumbs-list
+  font-size: 11px
+  margin-bottom: 17px
+
+  > li
+    display: inline
+
+  a
+    text-decoration: none
+    +hover-underline
+
+
+/*
+  способы оплаты
+
+.payments-title
+  margin-bottom: 16px
+
+  font-size: 24px
+  line-height: 29px
+  font-weight: $font-weight-light
+  color: #8c727b
+
+.payment-methods-list
+  font-size: 0
+
+  &:after
+    content: none
+
+  &.payment-methods-list
+    > li
+      display: inline-block
+      margin-right: 19px
+      margin-bottom: 20px
+      padding-left: 0
+      vertical-align: top
+      width: 192px
+
+      text-align: center
+
+      &:nth-child(3n)
+        margin-right: 0
+
+      &.nth-child-3n
+        margin-right: 0
+
+.payment-method-image
+  display: block
+  margin-bottom: 10px
+
+.payment-method-title
+  margin-bottom: 10px
+  font-size: 18px
+  font-weight: $font-weight-light
+  text-transform: uppercase
+
+.payment-method-desc
+  font-size: 14px
+
+
+
+/*
+  наши клиенты
+
+.clients
+  margin-top: -10px
+
+  .page-clients-list
+    +clr
+
+    > li
+      +size(25%, 137px)
+      float: left
+      text-align: center
+      line-height: 137px
+      padding-left: 0
+
+      &:before
+        content: ""
+
+      > img
+        display: inline-block
+        vertical-align: middle
+        // max-width: 100%
+        height: auto
+
+
+
+/*
+  404
+
+.content-404
+  position: relative
+  padding-top: 42px
+  min-height: 655px
+  background: url(../img/bg-404.png) left bottom no-repeat
+
+  &:after
+    content: "404"
+    position: absolute
+    left: 0
+    top: -24px
+    z-index: -10
+
+    font-size: 342px
+    line-height: 1
+    font-weight: bold
+    color: #f2f2f3
+
+.title-404
+  margin-bottom: 13px
+  font-size: 24px
+  font-weight: $font-weight-light
+  text-transform: uppercase
+  color: #8c727b
+
+.list-404
+  margin-bottom: 15px
+  font-weight: $font-weight-light
+
+  > li
+    &:before
+      content: "\2022"
+      color: #8c727b
+      margin-right: 4px
+
+.p-404
+  // font-weight: bold
+
+  a
+    color: #d99379
+
+    &:hover, &:focus
+      color: $color-hover
+
+
+
+/*
+  single article styles
+
+.block-article
+  p
+    font-size: 14px
+    line-height: 17px
+    margin-bottom: 16px
+    // padding-bottom: 15px
+
+  h2
+    // article title
+    margin-bottom: 27px
+    font-size: 30px
+    color: #8c727b
+    text-transform: uppercase
+
+  h3
+    margin-top: 21px
+    margin-bottom: 15px
+    font-size: 24px
+    font-weight: $font-weight-light
+    color: #8c727b
+
+  a
+    color: #d99379
+
+    &:hover
+      color: $color-hover
+
+  ul
+    +semantic-list
+
+    > li
+      position: relative
+      margin-bottom: 4px
+      padding-left: 15px
+
+      &:before
+        content: "\2022"
+        position: absolute
+        left: 0
+        top: 0
+
+        font-weight: bold
+        color: #8c727b
+
+  ol
+    +semantic-list
+    counter-reset: ol-counter
+
+    > li
+      position: relative
+      padding-left: 18px
+      margin-bottom: 4px
+
+      &:before
+        counter-increment: ol-counter
+        content: counter(ol-counter) ") "
+
+        position: absolute
+        left: 0
+        top: 0
+
+        color: #8c727b
+        font-size: 16px
+
+.page-front
+  .block-article
+    h2
+      text-transform: none
+      margin-bottom: 15px
+
+.article-image-alignnone
+  display: block
+  max-width: 100%
+  height: auto
+
+  margin-bottom: 25px
+
+
+
+/*
+  company faces
+
+.faces
+  .faces-list
+    font-size: 0
+
+    > li
+      display: inline-block
+      vertical-align: top
+      padding-left: 0 !important
+      padding: 0
+      width: 193px
+      margin-right: 18px
+      margin-bottom: 36px
+
+      text-align: center
+      color: #8c727b
+
+      &:nth-child(3n)
+        margin-right: 0
+
+      &.nth-child-3n
+        margin-right: 0
+
+    a
+      font-size: 12px
+      line-height: 1
+      text-decoration: none
+
+      color: #41a8bf
+
+      &:hover, &:focus
+        color: $color-hover
+
+.face-image
+  display: block
+  max-width: 100%
+  height: auto
+  margin-bottom: 10px
+
+.face-func
+  background: #f8f8f5
+  margin-bottom: 10px
+
+  font-size: 12px
+  font-weight: bold
+  line-height: 30px
+
+.face-name
+  font-size: 18px
+  font-weight: $font-weight-light
+  line-height: 22px
+
+
+.pager
+  background: #f8f8f5
+  line-height: 40px
+  font-size: 16px
+
+  text-align: center
+
+  > li
+    display: inline
+    margin: 0 8px
+
+    &.active
+      > a
+        color: #d99379
+
+    > a
+      text-decoration: none
+
+      &:hover
+        color: $color-hover
+
+
+
+/*
+  faq page
+
+.faq-overview.faq-overview
+  font-size: 18px
+  color: #d99379
+  background: #f8f8f5
+  padding: 16px 22px 10px
+
+  > li
+    margin-bottom: 11px
+    line-height: 24px
+
+    &:before
+      content: "\00bb"
+      color: #d99379
+
+    &:hover
+      &:before
+        color: $color-hover
+
+  a
+    color: #d99379
+    &:hover
+      color: $color-hover
+
+.faq-section
+  border-top: 1px solid #DDDDCB
+  padding-bottom: 10px
+  // padding-top: 20px
+
+  h3
+    margin-top: 25px
+    font-weight: bold
+
+  ul
+    > li
+      margin-bottom: 17px
+      line-height: 18px
+
+  &:first-child
+    border-top: none
+
+  &.first-child
+    border-top: none
+
+
+/*
+  news page
+
+.news-item-image
+  float: left
+  margin-right: 36px
+
+.news-item
+  margin-bottom: 35px
+
+  h2
+    font-size: 18px
+    line-height: 22px
+    font-weight: $font-weight-light
+    color: #d99379
+    margin-bottom: 15px
+
+  a
+    color: #41a8bf
+
+    &:hover
+      color: $color-hover
+
+  p
+    line-height: 17px
+
+  .news-item-date
+    display: inline-block
+    padding: 0 7px
+    margin-bottom: 3px
+
+    font-size: 24px
+    font-weight: $font-weight-light
+    background: #f8f8f5
+    color: #8c727b
+
+.article-news
+  h2
+    font-size: 22px
+    margin-bottom: 10px
+
+  .news-all-link
+    display: block
+    padding: 0 7px
+
+    font-size: 18px
+    line-height: 43px
+    font-weight: $font-weight-light
+    text-decoration: none
+    text-transform: uppercase
+    text-align: center
+
+    background: #f8f8f5
+    color: #d99379
+
+    &:hover
+      color: $color-hover
+
+  .news-item-date
+    display: inline-block
+    padding: 0 7px
+    margin: 9px 0
+
+    font-size: 24px
+    font-weight: $font-weight-light
+    background: #f8f8f5
+    color: #8c727b
+
+  .article-image-alignnone
+    margin-bottom: 15px
+
+
+
+/*
+  price page
+
+.price-prompt
+  margin-top: 26px
+  margin-bottom: 6px
+
+  font-size: 24px
+  line-height: 28px
+  font-weight: $font-weight-light
+  color: #41a8bf
+
+  b
+    text-transform: uppercase
+
+
+.article-price
+  .price-title
+    text-transform: none
+    font-size: 24px
+
+.btn-pricecalc-imaged
+  font-size: 20px
+  font-weight: bold
+  margin-top: 0
+  margin-top: 20px
+
+  &:before
+    content: ""
+    +msprite($icon-calc)
+    margin-right: 10px
+    vertical-align: -5px
+
+
+
+/*
+  страница отзывов
+
+.form-review
+  padding: 26px 40px
+  text-align: justify
+
+  background: #f8f8f5
+
+  h2
+    margin: 0
+    margin-bottom: 3px
+    font-size: 26px
+
+  .form-input
+    width: 255px
+    margin-bottom: 9px
+    padding-left: 7px
+    padding-right: 7px
+
+  textarea.form-input
+    width: 100%
+    height: 125px
+    max-height: 400px
+    margin-bottom: 17px
+
+  .form-btn
+    padding-left: 50px
+    padding-right: 50px
+
+.form-rating-container
+  display: inline-block
+  width: 255px
+  margin-bottom: 12px
+  padding: 0 10px
+
+  .rating-box
+    margin-left: 5px
+
+.rating-box
+  display: inline-block
+  vertical-align: middle
+
+.form-review-title
+  margin-bottom: 10px
+
+  font-size: 26px
+  font-weight: $font-weight-light
+  text-transform: uppercase
+
+.form-review-subtitle
+  margin-bottom: 7px
+
+  font-weight: $font-weight-light
+  color: #8c727b
+
+.reviews
+  margin-top: 9px
+
+.review
+  padding-top: 25px
+  padding-bottom: 20px
+
+  border-top: 1px solid #DDDDCB
+
+  &:first-child
+    border-top: none
+
+  &.first-child
+    border-top: none
+
+  h3
+    margin-top: 0
+    margin-bottom: 7px
+
+  p
+    font-weight: normal
+
+  .rating-box
+    margin-bottom: 8px
+
+.review-meta
+  font-weight: $font-weight-light
+
+.review-title
+  line-height: 1
+
+.review-date
+  margin-right: 8px
+
+.review-author
+  margin-left: 5px
+
+
+/*
+  страница акции и скидки
+
+.actions
+  padding-bottom: 20px
+
+.action-block
+  +clr
+  padding: 20px 15px 10px
+  margin-bottom: 20px
+  background: #f8f8f5 url(../img/bg-transparent-action.png)
+
+  &.color-1
+    background-color: #dbf8ff
+
+  &.color-2
+    background-color: #fff2ed
+
+  &.color-3
+    background-color: #f8f8f5
+
+  p
+    line-height: 17px
+
+.action-image
+  float: left
+  margin-right: 25px
+
+.action-title
+  margin-bottom: 12px
+
+  color: #41a8bf
+  font-size: 24px
+  font-weight: $font-weight-light
+  line-height: 31px
+  text-transform: uppercase
+
+
+
+/*
+  service page
+
+.service-points
+  padding-bottom: 20px
+  margin-bottom: 20px
+  border-bottom: 1px solid #DDDDCB
+
+  .sp-desc
+    font-size: 24px
+    line-height: 26px
+    font-weight: $font-weight-light
+
+    color: #8c727b
+
+  .sp-list
+    > li
+      padding: 0
+      margin-bottom: 10px
+
+      &:before
+        content: none
+
+  .sp-name
+    position: relative
+    background: #f8f8f5
+    padding-left: 20px
+    margin-bottom: 0
+
+    font-size: 18px
+    line-height: 30px
+    font-weight: $font-weight-light
+    color: #8c727b
+
+    &:before
+      counter-increment: ol-counter
+      content: counter(ol-counter) ") "
+      position: absolute
+      top: 0
+      left: 0
+      margin-right: 3px
+
+.sp-text
+  padding-left: 20px
+
+
+.author-box
+  margin-top: 33px
+  padding: 20px 25px 10px
+  background: #8c727b
+  color: white
+
+.author-box-image
+  float: left
+
+.author-box-content
+  padding-left: 22px + 90px
+
+.author-box-name
+  margin-bottom: 17px
+
+  font-size: 18px
+  line-height: 1
+  font-weight: $font-weight-light
+
+
+/*
+  contacts
+
+.icon-email
+  +msprite($icon-email)
+  vertical-align: middle
+  margin-right: 8px
+
+.icon-skype
+  +msprite($icon-skype)
+  vertical-align: middle
+  margin-right: 5px
+
+.contacts-links
+  a
+    color: black
+    line-height: 24px
+
+    &:hover
+      color: $color-hover
+
+.contact-map-container
+  margin-top: 28px
+
+  .contact-map-locations
+    > li
+      padding-left: 24px
+
+.contact-map-title
+  margin-bottom: 15px
+
+  font-size: 24px
+  font-weight: $font-weight-light
+  color: #8c727b
+
+.contact-map
+  background: #f8f8f5
+
+  a
+    color: #d99379
+    text-decoration: none
+    border-bottom: 1px dashed
+    font-size: 18px
+    line-height: 44px
+    margin: 0 12px
+
+    &.active
+      color: #8c727b
+      border-bottom: none
+
+#js-map-yandex, #js-map-google
+  background: lightgray
+  height: 268px
+
+#js-map-google
+  display: none
+
+.contact-map-locations
+  font-size: 18px
+  margin-top: 24px !important
+
+  a
+    display: inline-block
+    margin-bottom: 5px
+    color: #d99379
+    text-decoration: none
+    border-bottom: 1px dashed
+
+    &:hover
+      color: $color-hover
+
+  p
+    margin-bottom: 23px
